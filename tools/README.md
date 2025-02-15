@@ -5,7 +5,6 @@
 | CheatEngine               | 7.5           |
 | x64dbg                    | 25.01.17      |
 | HexEdit                   | 2.5.0.0       |
-| Visual Studio             | 2022 Community|
 | VS WDK                    | 10.0.26100    |
 | VmwareHardenedLoader      | -             |
 
