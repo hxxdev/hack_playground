@@ -1,7 +1,7 @@
 #!/bin/bash
 source "$PATH_DEV"/env.sh
 export PATH_CE="$PATH_WIN/Cheat Engine 7.5"
-export PATH_DBG="$PATH_WIN/dbg"
+export PATH_DBG="$PATH_WIN/Debugger"
 alias ce="\"$PATH_CE\"/Cheat Engine.exe &"
 alias dbg32="\"$PATH_DBG\"/release/x32/x32dbg.exe &"
 alias dbg64="\"$PATH_DBG\"/release/x64/x64dbg.exe &"
