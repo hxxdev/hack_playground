@@ -28,10 +28,10 @@ chmod u+x ./flare/:run_game
 chmod u+x ./flare/game/flare.exe
 
 echo "HACK ENV SETUP *******************************************"
-echo "VS                    : $PATH_VS                          "
-echo "CHEAT ENGINE          : $PATH_CE							"
-echo "DEBUGGER              : $PATH_DBG							"
-echo "LIST DLL              : $PATH_LIST_DLL 					"
+echo "VS                    : $PATH_VS"
+echo "CHEAT ENGINE          : $PATH_CE"
+echo "DEBUGGER              : $PATH_DBG"
+echo "LIST DLL              : $PATH_LIST_DLL"
 echo "**********************************************************"
 echo "HOTKEYS **************************************************"
 echo "vs <project file>     : run Visual Studio"
