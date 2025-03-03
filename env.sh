@@ -1,7 +1,9 @@
 #!/bin/bash
+export PATH_HACK=$(pwd)
 export PATH_VS="$PATH_WIN/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/devenv.exe"
 export PATH_CE="$PATH_WIN/Program Files/Cheat Engine 7.5/Cheat Engine.exe"
 export PATH_DBG="$PATH_WIN/Debugger"
+export PATH_LIST_DLL="$PATH_HACK/tools/ListDlls/Listdlls.exe"
 
 vs() {
    # Take first passed argument and generate absolute path
@@ -20,20 +22,23 @@ ce() {
 
 alias dbg32="\"$PATH_DBG\"/release/x32/x32dbg.exe &"
 alias dbg64="\"$PATH_DBG\"/release/x64/x64dbg.exe &"
+alias listdll="\"$PATH_LIST_DLL\""
 
 chmod u+x ./flare/:run_game
 chmod u+x ./flare/game/flare.exe
 
 echo "HACK ENV SETUP *******************************************"
-echo "VS                : $PATH_VS                              "
-echo "CHEAT ENGINE      : $PATH_CE								"
-echo "DEBUGGER          : $PATH_DBG								"
+echo "VS                    : $PATH_VS                          "
+echo "CHEAT ENGINE          : $PATH_CE							"
+echo "DEBUGGER              : $PATH_DBG							"
+echo "LIST DLL              : $PATH_LIST_DLL 					"
 echo "**********************************************************"
 echo "HOTKEYS **************************************************"
-echo "vs <project file> : run Visual Studio"
-echo "ce                : run Cheat Engine 7.5"
-echo "dbg32             : run x32 debugger"
-echo "dbg64             : run x64 debugger"
+echo "vs <project file>     : run Visual Studio"
+echo "ce                    : run Cheat Engine 7.5"
+echo "dbg32                 : run x32 debugger"
+echo "dbg64                 : run x64 debugger"
+echo "listdll <process name>: list DLLs loaded in process"
 echo "**********************************************************"
 
 
