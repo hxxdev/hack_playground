@@ -6,7 +6,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <string>
-#include "basic_tool.h"
+// #include "basic_tool.h"
 #include "process_manager.h"
 #include "dll_injector.h"
 
@@ -17,7 +17,7 @@ int main(int argc, char** argv) {
 	LPCWSTR ProcessName = L"flare.exe";
 	ProcessManager pManager;
 	pManager.OpenProcessByProcessName(ProcessName);
-	if (pManager.GetProcess() == NULL) {
+	if (pManager.GetProcess() == NULL) { // No Process Found
 		return 0;
 	}
 
@@ -33,28 +33,28 @@ int main(int argc, char** argv) {
 	SIZE_T bytes_read = 0;
 
 	/* Inject DLL. */
-	LPCSTR dllFullPath = "C:\\Users\\g1004\\dev\\flare\\code\\InternalMemoryHack\\x64\\Debug\\Dll.dll";
+	LPCSTR dllFullPath = "\\\\wsl.localhost\\Ubuntu - 24.04\\home\\hxxdev\\dev\\hack_playground\\flare\\code\\InternalMemoryHack\\x64\\Debug\\Dll.dll";
 	DllInjector injector(pManager.GetProcess());
 	injector.inject(dllFullPath);
 
 	while (1) {
-	//	pManager.ReadProcess(BaseAddress + 0x00189750, &PlayerPosxAddress);
-	//	PlayerPosyAddress = PlayerPosxAddress;
+		pManager.ReadProcess(BaseAddress + 0x00189750, &PlayerPosxAddress);
+		PlayerPosyAddress = PlayerPosxAddress;
 
-	//	/* Read player position x-axis coordinate */
-	//	PlayerPosxAddress = PlayerPosxAddress + 0x3D0;
-	//	pManager.ReadProcess(PlayerPosxAddress, &PlayerPosx);
+		/* Read player position x-axis coordinate */
+		PlayerPosxAddress = PlayerPosxAddress + 0x3D0;
+		pManager.ReadProcess(PlayerPosxAddress, &PlayerPosx);
 
-	//	/* Read player position y-axis coordinate */
-	//	PlayerPosyAddress = PlayerPosyAddress + 0x3CC;
-	//	pManager.ReadProcess(PlayerPosyAddress, &PlayerPosy);
-	//	
-	//	//wprintf(L"=======================\n");
-	//	//wprintf(L"player pos x :%f\n", PlayerPosx);
-	//	//wprintf(L"player pos y :%f\n", PlayerPosy);
-	//	//wprintf(L"=======================\n");
+		/* Read player position y-axis coordinate */
+		PlayerPosyAddress = PlayerPosyAddress + 0x3CC;
+		pManager.ReadProcess(PlayerPosyAddress, &PlayerPosy);
+		
+		wprintf(L"=======================\n");
+		wprintf(L"player pos x :%f\n", PlayerPosx);
+		wprintf(L"player pos y :%f\n", PlayerPosy);
+		wprintf(L"=======================\n");
 		wprintf(L"job done...");
-		Sleep(10000);
+		Sleep(5000);
 	}
 	/*
 	if (~ReadProcessMemory(hProcess, (LPCVOID)(0x22095EB3670), &PlayerPosxAddress, sizeof(PlayerPosxAddress), &bytes_read)) {

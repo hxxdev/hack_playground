@@ -72,16 +72,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\g1004\dev\tools\vs\hacklib;$(IncludePath)</IncludePath>
+    <IncludePath>\\wsl.localhost\Ubuntu - 24.04\home\hxxdev\dev\hack_playground\tools\vs\hacklib;\\wsl.localhost\Ubuntu - 24.04\home\hxxdev\dev\hack_playground\flare\code\InternalMemoryHack\Dll;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\g1004\dev\tools\vs\hacklib;$(IncludePath)</IncludePath>
+    <IncludePath>\\wsl.localhost\Ubuntu - 24.04\home\hxxdev\dev\hack_playground\tools\vs\hacklib;\\wsl.localhost\Ubuntu - 24.04\home\hxxdev\dev\hack_playground\flare\code\InternalMemoryHack\Dll;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\g1004\dev\tools\vs\hacklib;$(IncludePath)</IncludePath>
+    <IncludePath>\\wsl.localhost\Ubuntu - 24.04\home\hxxdev\dev\hack_playground\tools\vs\hacklib;\\wsl.localhost\Ubuntu - 24.04\home\hxxdev\dev\hack_playground\flare\code\InternalMemoryHack\Dll;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Users\g1004\dev\tools\vs\hacklib;$(IncludePath)</IncludePath>
+    <IncludePath>\\wsl.localhost\Ubuntu - 24.04\home\hxxdev\dev\hack_playground\tools\vs\hacklib;\\wsl.localhost\Ubuntu - 24.04\home\hxxdev\dev\hack_playground\flare\code\InternalMemoryHack\Dll;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -150,13 +150,13 @@
     <ClCompile Include="DllMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\tools\vs\hacklib\basic_tool.h" />
-    <ClInclude Include="..\..\..\..\tools\vs\hacklib\process_manager.h" />
-  </ItemGroup>
-  <ItemGroup>
     <MASM Include="mouse_codecave.asm">
       <FileType>Document</FileType>
     </MASM>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\tools\vs\hacklib\basic_tool.h" />
+    <ClInclude Include="..\..\..\..\tools\vs\hacklib\process_manager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -13,16 +13,16 @@
 using namespace std;
 
 ProcessManager::ProcessManager() {
-	HANDLE hProcess = NULL;
-	LPCWSTR ProcessName = NULL;
-	LPCWSTR WindowName = NULL;
+	hProcess = NULL;
+	ProcessName = NULL;
+	WindowName = NULL;
 }
 
 HANDLE ProcessManager::GetProcess() {
 	return hProcess;
 }
 
-HANDLE ProcessManager::OpenProcessByProcessName(LPCWSTR ProcessName) {
+HANDLE ProcessManager::OpenProcessByProcessName(LPCWSTR pName) {
 	/* Take a snapshot of currently running processes.
 	 * If this code is run at 32-bit executable in 64-bit OS, it will only capture 32-bit processes.
 	 * If this code is run at 64-bit executable in 64-bit OS, it will capture both 32-bit and 64-bit processes.*/
@@ -33,11 +33,11 @@ HANDLE ProcessManager::OpenProcessByProcessName(LPCWSTR ProcessName) {
 	Process32First(snapshot, &pe32);
 
 	/* Iterate through processes in the snapshot previously captured.
-	 * Compare the process name(`szExeFile`) with process we are looking for(`processName`). */
+	 * Compare the process name(`szExeFile`) with process we are looking for(`pName`). */
 	DWORD processID = NULL;
 
 	do {
-		if (wcscmp(pe32.szExeFile, ProcessName) == 0) {
+		if (wcscmp(pe32.szExeFile, pName) == 0) {
 			/* Open process and get process handle. */
 			processID = pe32.th32ProcessID;
 			ERROR_CHECK(hProcess = OpenProcess(PROCESS_ALL_ACCESS, true, processID), NULL)
@@ -45,11 +45,10 @@ HANDLE ProcessManager::OpenProcessByProcessName(LPCWSTR ProcessName) {
 	} while (Process32Next(snapshot, &pe32));
 
 	if (hProcess == NULL) {
-		/* if process with name `ProcessName` is not found,
+		/* if process with name `pName` is not found,
 		* display a message box showing "Process not found." */
-		wstring wstrProcessName(ProcessName);
-		wstring message = L"Process " + wstrProcessName + L" not found.";
-		int msgboxID = NULL;
+		wstring wstr_pName(pName);
+		wstring message = L"Process " + wstr_pName + L" not found.";
 		ERROR_CHECK(MessageBox(	NULL,
 								message.c_str(),
 								(LPCWSTR)L"Error",
@@ -59,17 +58,16 @@ HANDLE ProcessManager::OpenProcessByProcessName(LPCWSTR ProcessName) {
 	return hProcess;
 }
 
-HANDLE ProcessManager::OpenProcessByWindowName(LPCWSTR WindowName) {
+HANDLE ProcessManager::OpenProcessByWindowName(LPCWSTR wName) {
 	/* get window handle of `WindowName` */
 	HWND windowHandle = NULL;
-	windowHandle = FindWindow(NULL, WindowName);
+	windowHandle = FindWindow(NULL, wName);
 
 	if (windowHandle == NULL) {
 		/* if window with name `WindowName` is not found,
 		* display a message box showing "Window not found." */
-		wstring wstrWindowName(WindowName);
-		wstring message = L"Window " + wstrWindowName + L" not found.";
-		int msgboxID = NULL;
+		wstring wstr_wName(wName);
+		wstring message = L"Window " + wstr_wName + L" not found.";
 		ERROR_CHECK(MessageBox(	NULL,
 								message.c_str(),
 								(LPCWSTR)L"Error",
