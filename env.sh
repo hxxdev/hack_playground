@@ -17,13 +17,13 @@ vs() {
 
 ce() {
     local CE_PATH=$(wslpath -w "$PATH_CE")
-    powershell.exe "Start-Process '$CE_PATH'"
+    powershell.exe "Start-Process \"$CE_PATH\""
 }
 
 alias dbg32="\"$PATH_DBG\"/release/x32/x32dbg.exe &"
 alias dbg64="\"$PATH_DBG\"/release/x64/x64dbg.exe &"
 alias listdll="\"$PATH_LIST_DLL\""
-
+alias flare="\"$PATH_HACK\"/flare/:run_game &"
 chmod u+x ./flare/:run_game
 chmod u+x ./flare/game/flare.exe
 
@@ -39,6 +39,7 @@ echo "ce                    : run Cheat Engine 7.5"
 echo "dbg32                 : run x32 debugger"
 echo "dbg64                 : run x64 debugger"
 echo "listdll <process name>: list DLLs loaded in process"
+echo "flare                 : run game flare.exe"
 echo "**********************************************************"
 
 
