@@ -10,3 +10,7 @@ You can easily navigate these components by searching `64 latest spectre`.
 - C++ MFC for latest v143 build tools with Spectre Mitigations (ARM64/ARM64EC)
 - C++ MFC for latest v143 build tools with Spectre Mitigations (x86 & x64)
 3. Install WDK.
+4. Install the followings for remote connection to WSL.
+- C++ for Linux development
+- CMake tool for Linux development
+- Remote file explorer for Linux developlment
