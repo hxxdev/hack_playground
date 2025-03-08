@@ -124,56 +124,69 @@ void injected_thread() {
 // Caculate the location using the formula: new_location - original_location+5
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved) {
 	DWORD old_protect;
-	AssertError(L"Dll loaded");
-	if (fdwReason == DLL_PROCESS_ATTACH) {
-		DWORD64 BaseAddress = NULL; 
-		ERROR_CHECK(BaseAddress = (DWORD64) GetModuleHandle(L"flare.exe"), NULL)
 
-		/* hook mouse call */
-		unsigned char* hook_location = (unsigned char*)(BaseAddress + 0x00007FF7AEEBD3A6 - 0x00007FF7AEDD0000); // cursorpos(0)
-		mouse_return_address = (DWORD64)hook_location + 7;
-		ERROR_CHECK(VirtualProtect((void*)hook_location, 7, PAGE_EXECUTE_READWRITE, &old_protect), NULL)
-		WCHAR wchar_hlocation[128] = { NULL };
-		swprintf_s(wchar_hlocation, 128, L"hook location : %llx", (unsigned __int64)hook_location);
-		AssertError(wchar_hlocation);
+	
+	
+	
 
-		DWORD64 jmp_offset = (DWORD64)&mouse_codecave - ((DWORD64)hook_location + 7);
-		WCHAR wchar_jmp_offset[128] = { NULL };
-		swprintf_s(wchar_jmp_offset, 128, L"jump offset : %llx", (unsigned __int64)jmp_offset);
-		AssertError(wchar_jmp_offset);
+	switch (fdwReason) {
+		case DLL_PROCESS_ATTACH: {
+			AssertError(L"Dll attached");
 
-		memset(hook_location, 0xE9, 1);
-		memcpy(hook_location + 1, &jmp_offset, 5);		
-		memset(hook_location + 6, 0x90, 1);
+			DWORD64 BaseAddress = NULL;
+			ERROR_CHECK(BaseAddress = (DWORD64)GetModuleHandle(L"flare.exe"), NULL)
 
+			/* hook mouse call */
+			unsigned char* hook_location = NULL;
+			hook_location = (unsigned char*)(BaseAddress + 0xED3A6); // cursorpos(0)
+			mouse_return_address = (DWORD64)hook_location + 7;
+			ERROR_CHECK(VirtualProtect((void*)hook_location, 7, PAGE_EXECUTE_READWRITE, &old_protect), NULL)
+			WCHAR wchar_hlocation[128] = { NULL };
+			swprintf_s(wchar_hlocation, 128, L"hook location : %llx", (unsigned __int64)hook_location);
+			AssertError(wchar_hlocation);
 
+			DWORD64 jmp_offset = (DWORD64)&mouse_codecave - ((DWORD64)hook_location + 7);
+			WCHAR wchar_jmp_offset[128] = { NULL };
+			swprintf_s(wchar_jmp_offset, 128, L"jump offset : %llx", (unsigned __int64)jmp_offset);
+			AssertError(wchar_jmp_offset);
 
-
-		//*(hook_location + 1) = jmp_offset;
-		
-		
-		///* hook player move call */
-		//player_call_dest = (DWORD)flare_base + 0x20840;
-		//hook_location = (unsigned char*)((DWORD)flare_base + 0x00007FF7AEDF14D4 - BaseAddress); // x20AD4
-		//player_return_address = (DWORD)hook_location + 5;
-		//VirtualProtect((void*)hook_location, 5, PAGE_EXECUTE_READWRITE, &old_protect);
-		//*hook_location = 0xE9;
-		//*(DWORD*)(hook_location + 1) = (DWORD)&player_codecave - ((DWORD)hook_location + 5);
+			//memset(hook_location, 0xE9, 1);
+			//memcpy(hook_location + 1, &jmp_offset, 5);		
+			//memset(hook_location + 6, 0x90, 1);
 
 
-		///* hook loop call */
-		//loop_call_address = (DWORD)flare_base + 0x6B180;
-		//hook_location = (unsigned char*)((DWORD)flare_base + 0x6BA94);
-		//loop_return_address = (DWORD)hook_location + 5;
-		//VirtualProtect((void*)hook_location, 5, PAGE_EXECUTE_READWRITE, &old_protect);
-		//*hook_location = 0xE9;
-		//*(DWORD*)(hook_location + 1) = (DWORD)&loop_codecave - ((DWORD)hook_location + 5);
 
 
-		/* Create Thread */
-		//CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)injected_thread, NULL, 0, NULL);
-		return true;
-	}
+			//*(hook_location + 1) = jmp_offset;
 
+
+			///* hook player move call */
+			//player_call_dest = (DWORD)flare_base + 0x20840;
+			//hook_location = (unsigned char*)((DWORD)flare_base + 0x00007FF7AEDF14D4 - BaseAddress); // x20AD4
+			//player_return_address = (DWORD)hook_location + 5;
+			//VirtualProtect((void*)hook_location, 5, PAGE_EXECUTE_READWRITE, &old_protect);
+			//*hook_location = 0xE9;
+			//*(DWORD*)(hook_location + 1) = (DWORD)&player_codecave - ((DWORD)hook_location + 5);
+
+
+			///* hook loop call */
+			//loop_call_address = (DWORD)flare_base + 0x6B180;
+			//hook_location = (unsigned char*)((DWORD)flare_base + 0x6BA94);
+			//loop_return_address = (DWORD)hook_location + 5;
+			//VirtualProtect((void*)hook_location, 5, PAGE_EXECUTE_READWRITE, &old_protect);
+			//*hook_location = 0xE9;
+			//*(DWORD*)(hook_location + 1) = (DWORD)&loop_codecave - ((DWORD)hook_location + 5);
+
+
+			/* Create Thread */
+			//CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)injected_thread, NULL, 0, NULL);
+			
+			break;
+		}
+		case DLL_PROCESS_DETACH: {
+			AssertError(L"Dll detached");
+			break;
+		}
+	} // end of switch(fdwReason)
 	return true;
 }

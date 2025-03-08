@@ -33,7 +33,8 @@ int main(int argc, char** argv) {
 	SIZE_T bytes_read = 0;
 
 	/* Inject DLL. */
-	LPCSTR dllFullPath = "\\\\wsl.localhost\\Ubuntu - 24.04\\home\\hxxdev\\dev\\hack_playground\\flare\\code\\InternalMemoryHack\\x64\\Debug\\Dll.dll";
+	//LPCSTR dllFullPath = "C:\\Users\\hxxdev\\Dll.dll";
+	LPCSTR dllFullPath = "\\\\wsl.localhost\\Ubuntu-24.04\\home\\hxxdev\\dev\\hack_playground\\flare\\code\\InternalMemoryHack\\x64\\Debug\\Dll.dll";
 	DllInjector injector(pManager.GetProcess());
 	injector.inject(dllFullPath);
 
@@ -53,7 +54,7 @@ int main(int argc, char** argv) {
 		wprintf(L"player pos x :%f\n", PlayerPosx);
 		wprintf(L"player pos y :%f\n", PlayerPosy);
 		wprintf(L"=======================\n");
-		wprintf(L"job done...");
+		wprintf(L"job done...\n");
 		Sleep(5000);
 	}
 	/*
