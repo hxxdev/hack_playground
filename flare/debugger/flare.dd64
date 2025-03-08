@@ -1,0 +1,109 @@
+{
+ "comments": [
+  {
+   "module": "flare.exe",
+   "address": "0xED3A6",
+   "manual": true,
+   "text": "update_cursorposx, [rbx+BEC] contains cursorposx"
+  },
+  {
+   "module": "flare.exe",
+   "address": "0x11FADF",
+   "manual": true,
+   "text": "call_update_cursorposx"
+  },
+  {
+   "module": "flare.exe",
+   "address": "0xECA30",
+   "manual": true,
+   "text": "ret_update_cursorposx"
+  }
+ ],
+ "breakpoints": [
+  {
+   "address": "0xECA30",
+   "enabled": false,
+   "oldbytes": "0x3DC3",
+   "type": 0,
+   "titantype": "0x0",
+   "name": "",
+   "module": "flare.exe",
+   "breakCondition": "",
+   "logText": "",
+   "logCondition": "",
+   "commandText": "",
+   "commandCondition": "",
+   "logFile": "",
+   "fastResume": false,
+   "silent": false
+  },
+  {
+   "address": "0xED3A6",
+   "enabled": false,
+   "oldbytes": "0x8948",
+   "type": 0,
+   "titantype": "0x0",
+   "name": "",
+   "module": "flare.exe",
+   "breakCondition": "",
+   "logText": "",
+   "logCondition": "",
+   "commandText": "",
+   "commandCondition": "",
+   "logFile": "",
+   "fastResume": false,
+   "silent": false
+  },
+  {
+   "address": "0x11FADF",
+   "enabled": false,
+   "oldbytes": "0x50FF",
+   "type": 0,
+   "titantype": "0x0",
+   "name": "",
+   "module": "flare.exe",
+   "breakCondition": "",
+   "logText": "",
+   "logCondition": "",
+   "commandText": "",
+   "commandCondition": "",
+   "logFile": "",
+   "fastResume": false,
+   "silent": false
+  },
+  {
+   "address": "0x12DE912FF2C",
+   "enabled": false,
+   "type": 1,
+   "titantype": "0x557",
+   "name": "",
+   "module": "",
+   "breakCondition": "",
+   "logText": "",
+   "logCondition": "",
+   "commandText": "",
+   "commandCondition": "",
+   "logFile": "",
+   "fastResume": false,
+   "silent": false
+  },
+  {
+   "address": "0x12DE912FF30",
+   "enabled": false,
+   "type": 1,
+   "titantype": "0x558",
+   "name": "",
+   "module": "",
+   "breakCondition": "",
+   "logText": "",
+   "logCondition": "",
+   "commandText": "",
+   "commandCondition": "",
+   "logFile": "",
+   "fastResume": false,
+   "silent": false
+  }
+ ],
+ "hashAlgorithm": "murmurhash",
+ "hash": "0xF67CDB9350B0AA2"
+}
