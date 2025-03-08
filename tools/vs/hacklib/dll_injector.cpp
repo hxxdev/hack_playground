@@ -4,6 +4,7 @@
 
 #include <Windows.h>
 #include <string>
+#include <tlhelp32.h>
 #include "basic_tool.h"
 #include "dll_injector.h"
 
